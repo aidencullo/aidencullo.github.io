@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>True or False Fact</title>
+</head>
 <body>
-  <div id="ip"></div>
-  <div id="city"></div>
-  <div id="region"></div>
-  <div id="country"></div>
-  <div id="loc"></div>
-  <div id="org"></div>
-  <div id="timezone"></div>
-
+  <h1 id="fact">Loading...</h1>
   <script>
-    fetch('https://ipapi.co/json/')
+    fetch('https://opentdb.com/api.php?amount=1&type=boolean')
       .then(res => res.json())
       .then(data => {
-        document.getElementById('ip').textContent = `IP: ${data.ip}`;
-        document.getElementById('city').textContent = `City: ${data.city}`;
-        document.getElementById('region').textContent = `Region: ${data.region}`;
-        document.getElementById('country').textContent = `Country: ${data.country_name}`;
-        document.getElementById('loc').textContent = `Location: ${data.latitude}, ${data.longitude}`;
-        document.getElementById('org').textContent = `Org: ${data.org}`;
-        document.getElementById('timezone').textContent = `Timezone: ${data.timezone}`;
+        const question = data.results[0].question;
+        const answer = data.results[0].correct_answer;
+        document.getElementById('fact').innerHTML = `${question} <br><strong>${answer}</strong>`;
       });
   </script>
 </body>
