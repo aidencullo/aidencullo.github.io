@@ -5,6 +5,12 @@
 </head>
 <body>
   <h1 id="fact">Loading...</h1>
+  <div id="buttonContainer">
+    <button id="trueBtn">True</button>
+    <button id="falseBtn">False</button>
+  </div>
+  <div id="result" style="display:none;">Thanks for your answer!</div>
+
   <script>
     fetch('https://opentdb.com/api.php?amount=1&type=boolean')
       .then(res => {
@@ -20,6 +26,14 @@
         document.getElementById('fact').textContent = 'Failed to load fact. Please try again in a few seconds.';
         console.error(err);
       });
+
+    function handleAnswer() {
+      document.getElementById('buttonContainer').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+    }
+
+    document.getElementById('trueBtn').onclick = handleAnswer;
+    document.getElementById('falseBtn').onclick = handleAnswer;
   </script>
 </body>
 </html>
