@@ -7,19 +7,14 @@
   <p>Your location: <span id="location">Detecting...</span></p>
 
   <script>
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        pos => {
-          const { latitude, longitude } = pos.coords;
-          document.getElementById('location').textContent = `Lat: ${latitude}, Lon: ${longitude}`;
-        },
-        () => {
-          document.getElementById('location').textContent = 'Location access denied.';
-        }
-      );
-    } else {
-      document.getElementById('location').textContent = 'Geolocation not supported.';
-    }
+    fetch('https://api.ipify.org?format=json')
+  .then(res => res.json())
+  .then(data => {
+    console.log(data.ip);
+    document.getElementById('location').textContent = data.ip;
+  });
+
+  
   </script>
 </body>
 </html>
