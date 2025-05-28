@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>User Location</title>
-</head>
 <body>
-  <p>Your location: <span id="location">Detecting...</span></p>
+  <div id="ip"></div>
+  <div id="city"></div>
+  <div id="region"></div>
+  <div id="country"></div>
+  <div id="loc"></div>
+  <div id="org"></div>
+  <div id="timezone"></div>
 
   <script>
-    fetch('https://api.ipify.org?format=json')
-  .then(res => res.json())
-  .then(data => {
-    console.log(data.ip);
-    document.getElementById('location').textContent = data.ip;
-  });
-
-  
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('ip').textContent = `IP: ${data.ip}`;
+        document.getElementById('city').textContent = `City: ${data.city}`;
+        document.getElementById('region').textContent = `Region: ${data.region}`;
+        document.getElementById('country').textContent = `Country: ${data.country_name}`;
+        document.getElementById('loc').textContent = `Location: ${data.latitude}, ${data.longitude}`;
+        document.getElementById('org').textContent = `Org: ${data.org}`;
+        document.getElementById('timezone').textContent = `Timezone: ${data.timezone}`;
+      });
   </script>
 </body>
 </html>
