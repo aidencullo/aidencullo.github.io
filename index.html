@@ -7,11 +7,18 @@
   <h1 id="fact">Loading...</h1>
   <script>
     fetch('https://opentdb.com/api.php?amount=1&type=boolean')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
       .then(data => {
         const question = data.results[0].question;
         const answer = data.results[0].correct_answer;
         document.getElementById('fact').innerHTML = `${question} <br><strong>${answer}</strong>`;
+      })
+      .catch(err => {
+        document.getElementById('fact').textContent = 'Failed to load fact. Please try again in a few seconds.';
+        console.error(err);
       });
   </script>
 </body>
