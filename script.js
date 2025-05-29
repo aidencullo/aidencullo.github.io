@@ -38,8 +38,14 @@ function showResultState(isCorrect) {
   elements.result.textContent = isCorrect 
     ? 'Correct! Well done!' 
     : `Incorrect. The correct answer was ${currentAnswer}.`;
+    showNewFactBtn();
+}
+
+function showNewFactBtn() {
   elements.newFactBtn.style.display = 'block';
 }
+
+
 
 // API Calls
 async function fetchQuestionFromAPI() {
@@ -64,8 +70,30 @@ async function handleNewQuestion() {
     showQuestionState();
   } catch (error) {
     showErrorState();
+    startTimer();
+    setTimeout(() => {
+      showNewFactBtn();
+    }, 3000);
   }
 }
+
+function startTimer() {
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  let count = 1;
+  div.textContent = count;
+  const interval = setInterval(() => {
+    count++;
+    if (count > 3) {
+      div.remove();
+      clearInterval(interval);
+    } else {
+      div.textContent = count;
+    }
+  }, 1000);
+}
+
+
 
 // Initialize
 function initializeEventListeners() {
