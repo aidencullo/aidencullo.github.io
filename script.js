@@ -20,6 +20,11 @@ function fetchQuestion() {
     .catch(err => {
       document.getElementById('fact').textContent = 'Failed to load fact. Please try again in a few seconds.';
       console.error(err);
+      document.getElementById('newFactBtn').style.display = 'none';
+
+      setTimeout(() => {
+        document.getElementById('newFactBtn').style.display = 'block';
+      }, 3000);      
     });
 }
 
