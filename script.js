@@ -38,14 +38,15 @@ function showResultState(isCorrect) {
   elements.result.textContent = isCorrect 
     ? 'Correct! Well done!' 
     : `Incorrect. The correct answer was ${currentAnswer}.`;
-    showNewFactBtn();
+  startTimer();
+  setTimeout(() => {
+    handleNewQuestion();
+  }, 3000);
 }
 
 function showNewFactBtn() {
   elements.newFactBtn.style.display = 'block';
 }
-
-
 
 // API Calls
 async function fetchQuestionFromAPI() {
@@ -92,8 +93,6 @@ function startTimer() {
     }
   }, 1000);
 }
-
-
 
 // Initialize
 function initializeEventListeners() {
