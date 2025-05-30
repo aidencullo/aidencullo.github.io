@@ -38,10 +38,7 @@ function showResultState(isCorrect) {
   elements.result.textContent = isCorrect 
     ? 'Correct! Well done!' 
     : `Incorrect. The correct answer was ${currentAnswer}.`;
-  startTimer();
-  setTimeout(() => {
-    handleNewQuestion();
-  }, 3000);
+    startTimerAndTimeout(5)
 }
 
 function showNewFactBtn() {
@@ -71,21 +68,25 @@ async function handleNewQuestion() {
     showQuestionState();
   } catch (error) {
     showErrorState();
-    startTimer();
-    setTimeout(() => {
-      showNewFactBtn();
-    }, 3000);
+    startTimerAndTimeout(5)
   }
 }
 
-function startTimer() {
+function startTimerAndTimeout(n) {
+  startTimer(n);
+  setTimeout(() => {
+    handleNewQuestion();
+  }, n * 1000);  
+}
+
+function startTimer(n) {
   const div = document.createElement('div');
   document.body.appendChild(div);
   let count = 1;
   div.textContent = count;
   const interval = setInterval(() => {
     count++;
-    if (count > 3) {
+    if (count > n) {
       div.remove();
       clearInterval(interval);
     } else {
