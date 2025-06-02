@@ -11,9 +11,16 @@ const elements = {
   falseBtn: document.getElementById('falseBtn')
 };
 
+// Utility Functions
+function sanitizeText(text) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = text;
+  return tempDiv.textContent;
+}
+
 // UI Updates
 function updateQuestionDisplay(question) {
-  elements.fact.textContent = question;
+  elements.fact.textContent = sanitizeText(question);
 }
 
 function showLoadingState() {
@@ -38,7 +45,7 @@ function showResultState(isCorrect) {
   elements.result.textContent = isCorrect 
     ? 'Correct! Well done!' 
     : `Incorrect. The correct answer was ${currentAnswer}.`;
-    startTimerAndTimeout(5)
+  startTimerAndTimeout(5);
 }
 
 function showNewFactBtn() {
@@ -68,7 +75,7 @@ async function handleNewQuestion() {
     showQuestionState();
   } catch (error) {
     showErrorState();
-    startTimerAndTimeout(5)
+    startTimerAndTimeout(5);
   }
 }
 
