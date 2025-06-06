@@ -35,7 +35,7 @@ function showQuestionState() {
 }
 
 function showErrorState() {
-  elements.fact.textContent = 'Failed to load fact. Please try again in a few seconds.';
+  elements.fact.innerHTML = 'Failed to load fact &#128546; Please try again in a few seconds.';
   console.error('Failed to load fact');
 }
 
