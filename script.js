@@ -88,16 +88,17 @@ function startTimerAndTimeout(n) {
 
 function startTimer(n) {
   const div = document.createElement('div');
+  div.id = 'countdown';
   document.body.appendChild(div);
-  let count = 1;
-  div.textContent = count;
+  let count = n;
+  div.textContent = `${count} seconds remaining until next question`;
   const interval = setInterval(() => {
-    count++;
-    if (count > n) {
+    count--;
+    if (count <= 0) {
       div.remove();
       clearInterval(interval);
     } else {
-      div.textContent = count;
+      div.textContent = `${count} seconds remaining until next question`;
     }
   }, 1000);
 }
