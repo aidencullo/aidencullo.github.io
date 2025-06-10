@@ -1,9 +1,13 @@
 // State management
 let currentAnswer = '';
+let correctCount = 0;
+let incorrectCount = 0;
 
 // DOM Elements
 const elements = {
   fact: document.getElementById('fact'),
+  correctCount: document.getElementById('correctCount'),
+  incorrectCount: document.getElementById('incorrectCount'),
   buttonContainer: document.getElementById('buttonContainer'),
   result: document.getElementById('result'),
   newFactBtn: document.getElementById('newFactBtn'),
@@ -62,6 +66,13 @@ async function fetchQuestionFromAPI() {
 // Event Handlers
 function handleAnswer(userAnswer) {
   const isCorrect = userAnswer === currentAnswer;
+  if (isCorrect) {
+    correctCount++;
+    elements.correctCount.textContent = `Correct: ${correctCount}`;
+  } else {
+    incorrectCount++;
+    elements.incorrectCount.textContent = `Incorrect: ${incorrectCount}`;
+  }
   showResultState(isCorrect);
 }
 

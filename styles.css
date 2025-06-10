@@ -78,4 +78,20 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.score-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+#correctCount {
+  color: #2ecc71;
+}
+
+#incorrectCount {
+  color: #e74c3c;
 } 
