@@ -1,4 +1,5 @@
 // State management
+document.cookie = "correctCount=100";
 let currentAnswer = '';
 let correctCount = 0;
 let incorrectCount = 0;
