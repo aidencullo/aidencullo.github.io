@@ -16,6 +16,22 @@ const elements = {
   falseBtn: document.getElementById('falseBtn')
 };
 
+// Score Management
+function updateScoreDisplay() {
+  elements.correctCount.textContent = `Correct: ${correctCount}`;
+  elements.incorrectCount.textContent = `Incorrect: ${incorrectCount}`;
+}
+
+function incrementCorrectCount() {
+  correctCount++;
+  updateScoreDisplay();
+}
+
+function incrementIncorrectCount() {
+  incorrectCount++;
+  updateScoreDisplay();
+}
+
 // Utility Functions
 function sanitizeText(text) {
   const tempDiv = document.createElement('div');
@@ -68,11 +84,9 @@ async function fetchQuestionFromAPI() {
 function handleAnswer(userAnswer) {
   const isCorrect = userAnswer === currentAnswer;
   if (isCorrect) {
-    correctCount++;
-    elements.correctCount.textContent = `Correct: ${correctCount}`;
+    incrementCorrectCount();
   } else {
-    incorrectCount++;
-    elements.incorrectCount.textContent = `Incorrect: ${incorrectCount}`;
+    incrementIncorrectCount();
   }
   showResultState(isCorrect);
 }
