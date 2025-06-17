@@ -1,5 +1,4 @@
 // State management
-document.cookie = "correctCount=100";
 let currentAnswer = '';
 let correctCount = 0;
 let incorrectCount = 0;
@@ -16,6 +15,19 @@ const elements = {
   falseBtn: document.getElementById('falseBtn')
 };
 
+function readCookies(){
+  cookies = document.cookie.split('; ')
+  cookies.forEach((rawCookie) => {
+    cookie = rawCookie.split('=')
+    if (cookie[0] == "correctCount"){
+      correctCount = cookie[1]
+    }    
+    if (cookie[0] == "incorrectCount"){
+      incorrectCount = cookie[1]
+    }
+  })
+}
+
 // Score Management
 function updateScoreDisplay() {
   elements.correctCount.textContent = `Correct: ${correctCount}`;
@@ -24,12 +36,19 @@ function updateScoreDisplay() {
 
 function incrementCorrectCount() {
   correctCount++;
+  updateCookie();
   updateScoreDisplay();
 }
 
 function incrementIncorrectCount() {
   incorrectCount++;
+  updateCookie();
   updateScoreDisplay();
+}
+
+function updateCookie() {
+  document.cookie = `correctCount=${correctCount}`;
+  document.cookie = `incorrectCount=${incorrectCount}`;
 }
 
 // Utility Functions
@@ -142,4 +161,5 @@ function startApp() {
   handleNewQuestion();
 }
 
+readCookies();
 startApp(); 
