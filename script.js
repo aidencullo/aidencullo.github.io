@@ -162,4 +162,5 @@ function startApp() {
 }
 
 readCookies();
+updateScoreDisplay();
 startApp(); 
