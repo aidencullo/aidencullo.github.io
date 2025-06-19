@@ -47,8 +47,9 @@ function incrementIncorrectCount() {
 }
 
 function updateCookie() {
-  document.cookie = `correctCount=${correctCount}`;
-  document.cookie = `incorrectCount=${incorrectCount}`;
+  const farFuture = new Date('2099-12-31T23:59:59Z').toUTCString();
+  document.cookie = `correctCount=${correctCount}; expires=${farFuture}; path=/`;
+  document.cookie = `incorrectCount=${incorrectCount}; expires=${farFuture}; path=/`;
 }
 
 // Utility Functions
